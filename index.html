@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="script/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="style/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Yummy Exam</title>
+</head>
+<body>
+    <div id="sideBar" class="sideBar d-flex bg-light">
+        <div id="sidBarMenu" class="sidBarMenu bg-dark">
+            <ul class="d-flex flex-column align-items-start">
+                <li><a href="#" data-page="search" data-aos="fade-right">Search</a></li>
+                <li><a href="#" data-page="categories" data-aos="fade-right" data-aos-delay="50">Categories</a></li>
+                <li><a href="#" data-page="areas" data-aos="fade-right" data-aos-delay="100">Areas</a></li>
+                <li><a href="#" data-page="ingredients" data-aos="fade-right" data-aos-delay="150">Ingredients</a></li>
+                <li><a href="#" data-page="contact" data-aos="fade-right" data-aos-delay="200">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="d-flex flex-column align-content-center justify-content-between">
+            <div class="bar-img">
+                <img src="images/tasty.png" alt="">
+            </div>
+            <div class="openIcon">
+                <i class="fa-solid fa-bars p-3 align-content-center open-close-icon"></i>
+            </div>
+                <div class="d-flex flex-column justify-content-center align-items-center sharingIcons">
+                    <i class="fa-solid fa-share-nodes p-2"></i>   
+                    <i class="fa-solid fa-globe p-2"></i>                 
+ </div>  
+    </div>
+    <footer class="navbar-footer d-flex flex-column align-items-start text-white">
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook text-white" aria-label="Facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter text-white" aria-label="Twitter"></i></a>
+            <a href="#"><i class="fa-solid fa-globe text-white" aria-label="Globe"></i></a>
+        </div>
+        <p>Copyright &copy; 2019 All Rights Reserved.</p>
+    </footer>
+     </div>
+    <div class="container row" id="content">
+        <div class="parent-container d-flex align-items-center justify-content-center">
+            <span class="loader d-flex align-self-center" id="loader"></span>
+        </div>
+        </div>
+    <script src="script/jquery-3.7.1.min.js"></script>
+    <script src="script/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>

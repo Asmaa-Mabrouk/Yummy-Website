@@ -1,0 +1,227 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: white;
+    background-color: black;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px dotted #FFF;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 2s linear infinite;
+  }
+  
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+#sideBar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+}
+
+#sideBar .bar-img img {
+    width: 50px;
+    height: 50px;
+}
+
+#sidBarMenu {
+    padding: 30px;
+}
+
+#sidBarMenu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidBarMenu ul li {
+    text-align: center;
+}
+
+#sidBarMenu ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 15px;
+    transition: 0.3s;
+}
+
+.openIcon i {
+    color: black;
+}
+
+.sharingIcons i{
+    color: black;  
+}
+
+.navbar-header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.navbar-image {
+    max-width: 50px;
+    height: auto;
+}
+
+.navbar-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 80%;
+    color: #000;
+}
+
+.social-icons a {
+    margin: 0 5px;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.close-navbar {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    cursor: pointer;
+    color: #000;
+    background: none;
+    border: none;
+    padding: 10px;
+    z-index: 10;
+}
+
+.container {
+    margin-left: 60px;
+    padding: 20px;
+}
+
+/* Categories Page */
+.item {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    cursor: pointer;
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    color: #000;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.overlay .text-container {
+    background: transparent;
+    padding: 10px;
+    overflow: hidden;
+    height: 50px;
+}
+
+.overlay .text-container p {
+    font-size: 14px;
+    margin: 0;
+    overflow: hidden;
+}
+
+.item:hover .overlay {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Meal details */
+#mealDetails {
+    margin-top: 20px;
+}
+
+.receipes {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.receipes ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.receipes ul li {
+    display: inline-block;
+    background-color: #B0E0E6;
+    color: #000;
+    padding: 5px 10px;
+    margin: 5px 3px;
+    border-radius: 5px;
+}
+
+.tags {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #e6b0e4;
+    color: #35112f;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.source-btn,
+.youtube-btn {
+    margin-right: 10px;
+}
+
+.youtube-btn {
+    color: #fff;
+}
+
+.youtube-btn:hover {
+    text-decoration: none;
+}
+
+.parent-container {
+    min-height: 100vh; /* Ensures full viewport height */
+    display: flex;
+    align-items: center; /* Centers vertically */
+    justify-content: center; /* Centers horizontally */
+}
