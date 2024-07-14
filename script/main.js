@@ -170,7 +170,7 @@ function displayCategories(categories) {
                     <div class="text-container">
                         <h3>${categories[i].strCategory}</h3>
                         <p>${
-                          categories[i].strCategoryDescription
+                          (categories[i].strCategoryDescription).slice(0, 200) + '...'
                         }</p>
                     </div>
                 </div>
