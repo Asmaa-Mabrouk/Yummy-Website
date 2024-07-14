@@ -1,3 +1,4 @@
+/* General Styling */
 * {
     box-sizing: border-box;
 }
@@ -9,12 +10,13 @@ body {
     margin: 0;
     padding: 0;
 }
+/*  Loader Styling */
 .loader {
     width: 48px;
     height: 48px;
     border: 5px dotted #FFF;
     border-radius: 50%;
-    display: inline-block;
+    display: none;
     position: relative;
     box-sizing: border-box;
     animation: rotation 2s linear infinite;
@@ -28,6 +30,13 @@ body {
       transform: rotate(360deg);
     }
   } 
+  .parent-container {
+    min-height: 100vh; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+/* Side-Bar Styling */
 #sideBar {
     position: fixed;
     top: 0;
@@ -62,7 +71,6 @@ body {
     padding: 15px;
     transition: 0.3s;
 }
-
 .openIcon i {
     color: black;
 }
@@ -107,7 +115,7 @@ body {
     padding: 10px;
     z-index: 10;
 }
-
+/* Display Content Styling */
 .container {
     margin-left: 60px;
     padding: 20px;
@@ -129,39 +137,33 @@ body {
 
 .overlay {
     position: absolute;
-    bottom: 0;
+    bottom: -100%;
     left: 0;
     right: 0;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
     color: #000;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.5s ease;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-
-.overlay .text-container {
+    transition: bottom 0.5s ease;
+  }
+  
+  .overlay .text-container {
     background: transparent;
     padding: 10px;
-    overflow: hidden;
-    height: 50px;
-}
-
-.overlay .text-container p {
+  }
+  
+  .overlay .text-container p {
     font-size: 14px;
     margin: 0;
-    overflow: hidden;
-}
-
-.item:hover .overlay {
-    visibility: visible;
-    opacity: 1;
-}
+  }
+  
+  .item:hover .overlay {
+    bottom: 0;
+  }
 
 /* Meal details */
 #mealDetails {
@@ -219,9 +221,3 @@ body {
     text-decoration: none;
 }
 
-.parent-container {
-    min-height: 100vh; /* Ensures full viewport height */
-    display: flex;
-    align-items: center; /* Centers vertically */
-    justify-content: center; /* Centers horizontally */
-}

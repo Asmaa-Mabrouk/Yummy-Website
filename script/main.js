@@ -11,7 +11,6 @@ $(document).ready(() => {
     $("#sideBar").css("left", `-${$(".sidBarMenu").innerWidth()}px`);
     $(".open-close-icon").addClass("fa-bars").removeClass("fa-xmark");
   }
-
   // Side Bar Links Navigation
   $("#sidBarMenu a").click(function (e) {
     e.preventDefault();
@@ -20,21 +19,18 @@ $(document).ready(() => {
   });
 });
 
+// Default page of the Website 
 async function fetchMealsWithEmptyQuery() {
   const response = await fetch(
     "https://www.themealdb.com/api/json/v1/1/search.php?s="
   );
-  if (!response.ok) {
-    throw new Error(`Failed to fetch meals: ${response.status}`);
-  }
   const data = await response.json();
   displayMeals(data.meals);
 }
-
 document.addEventListener("DOMContentLoaded", function () {
   fetchMealsWithEmptyQuery();
 });
-
+// Open and Close of Navbar 
 function openSideNav() {
   $(".sideBar").animate({ left: 0 }, 1000);
   $(".open-close-icon").removeClass("fa-bars").addClass("fa-xmark");
@@ -44,13 +40,20 @@ function closeSideNav() {
   $("#sideBar").animate({ left: `-${$(".sidBarMenu").innerWidth()}px` }, 1000);
   $(".open-close-icon").removeClass("fa-xmark").addClass("fa-bars");
 }
+// function showLoader() {
+//   document.querySelector("#loader").style.display = "block";
+// }
 
+// function hideLoader() {
+//   document.querySelector("#loader").style.display = "none"; } 
+
+// Navbar Navigation 
 function navigateTo(page) {
   const content = document.querySelector("#content");
   closeSideNav();
   switch (page) {
     case "search":
-      content.innerHTML = getSearchPageContent();
+      getSearchPageContent();
       setupSearchPage();
       break;
     case "categories":
@@ -68,8 +71,9 @@ function navigateTo(page) {
   }
 }
 
+// Search Page 
 function getSearchPageContent() {
-  return `
+  content.innerHTML =  `
         <div class="form-row d-flex justify-content-center align-items-center">
             <div class="form-group col-md-6 m-2">
                 <input type="text" class="form-control my-2" id="searchByName" placeholder="Search by Meal Name">
@@ -122,21 +126,20 @@ function setupSearchPage() {
     mealResults.innerHTML = "";
     if (meals && meals.length > 0) {
       let mealList = ``;
-      meals.forEach((meal) => {
+      for (let i=0 ; i < meals.length ; i++){
         mealList += `
-                    <div class="col-md-4 mb-4">
-                        <div class="item" data-id="${meal.idMeal}">
-                            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-                            <div class="overlay">
-                                <div class="text-container">
-                                    <h3>${meal.strMeal}</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-      });
+        <div class="col-md-4 mb-4">
+            <div class="item" data-id="${meals[i].idMeal}">
+            <div class="overlay">
+                    <div class="text-container">
+                        <h3>${meals[i].strMeal}</h3>
+                    </div>
+                </div>
+                <img src="${meals[i].strMealThumb}" alt="${meals[i].strMeal}">
+            </div>
+        </div>`;
+      }
       mealResults.innerHTML = `<div class="row">${mealList}</div>`;
-
       const mealItems = document.querySelectorAll(".item[data-id]");
       mealItems.forEach((item) => {
         item.addEventListener("click", function () {
@@ -155,7 +158,6 @@ async function getCategories() {
   );
   displayCategories(data.categories);
 }
-
 function displayCategories(categories) {
   let cartona = ``;
   for (let i = 0; i < categories.length; i++) {
@@ -169,8 +171,6 @@ function displayCategories(categories) {
                         <h3>${categories[i].strCategory}</h3>
                         <p>${
                           categories[i].strCategoryDescription
-                            ? categories[i].strCategoryDescription
-                            : "No description available"
                         }</p>
                     </div>
                 </div>
@@ -198,18 +198,26 @@ function displayMeals(meals) {
   let mealList = ``;
   for (let i = 0; i < meals.length; i++) {
     mealList += `
-        <div class="col-md-3">
-                <div onclick="showMealDetails('${meals[i].idMeal}')" class="meal position-relative overflow-hidden rounded-2 cursor-pointer">
-                    <img class="w-100 m-3" src="${meals[i].strMealThumb}" alt="" srcset="">
-                    <div class="meal-layer position-absolute d-flex align-items-center text-black p-2">
-                        <h3>${meals[i].strMeal}</h3>
-                    </div>
-                </div>
+      <div class="col-md-3">
+        <div class="item m-3" data-id="${meals[i].idMeal}">
+          <div class="overlay">
+            <div class="text-container">
+              <h3>${meals[i].strMeal}</h3>
+            </div>
+          </div>
+          <img src="${meals[i].strMealThumb}" alt="${meals[i].strMeal}">
         </div>
-        `;
+      </div>`;
   }
-  document.querySelector("#content").innerHTML = mealList;
+  document.querySelector("#content").innerHTML = `<div class="row">${mealList}</div>`;
+  const mealItems = document.querySelectorAll(".item[data-id]");
+  mealItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      showMealDetails(this.getAttribute("data-id"));
+    });
+  });
 }
+
 
 async function showMealDetails(mealID) {
   const data = await fetchData(
@@ -229,9 +237,7 @@ async function showMealDetails(mealID) {
             <h2 class="text-center">${meal.strMeal}</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <img src="${meal.strMealThumb}" alt="${
-    meal.strMeal
-  }" class="img-fluid">
+                    <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="img-fluid">
                 </div>
                 <div class="col-md-8">
                     <p>${meal.strInstructions}</p>
@@ -341,6 +347,7 @@ async function showIngredientMeals(ingredientName) {
 function showContacts() {
   content.innerHTML = `
     <div class="contact min-vh-100 d-flex justify-content-center align-items-center">
+    <h3 class="fw-bolder"> Contact Us </h3>
         <div class="container w-75 text-center">
             <form id="contactForm">
                 <div class="row g-4">
@@ -371,7 +378,7 @@ function showContacts() {
                     <div class="col-md-6 position-relative">
                         <input id="passwordInput" type="password" class="form-control" placeholder="Enter Your Password">
                         <div id="passwordAlert" class="alert alert-danger w-100 mt-2 d-none">
-                            Enter valid password *Minimum eight characters, at least one letter and one number:*
+                            Enter valid password <br> *Minimum eight characters.  <br> At least one letter and one number.*
                         </div>
                     </div>
                     <div class="col-md-6 position-relative">
